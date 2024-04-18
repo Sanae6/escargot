@@ -472,6 +472,9 @@ using String = ::JSC::Yarr::String;
 
 #if defined(OS_WINDOWS)
 #define WTF_OS_WINDOWS 1
+#elif defined(OS_SWITCH)
+#define WTF_OS_UNIX 1
+#define HAVE_ERRNO_H 1
 #else
 #define WTF_OS_LINUX 1
 #define WTF_OS_UNIX 1

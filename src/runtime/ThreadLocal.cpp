@@ -34,6 +34,8 @@
 #ifndef _WIN32_WINNT
 #define 0x0602
 #endif
+#elif defined(OS_SWITCH)
+#include <nn/os.h>
 #else
 #include <pthread.h>
 #endif
@@ -156,6 +158,8 @@ void ThreadLocal::initialize()
 #if defined(OS_DARWIN)
     stackStartAddress = pthread_get_stackaddr_np(pthread_self());
     stackSize = pthread_get_stacksize_np(pthread_self());
+#elif defined(OS_SWITCH)
+
 #else
     pthread_attr_t attr;
     pthread_getattr_np(pthread_self(), &attr);

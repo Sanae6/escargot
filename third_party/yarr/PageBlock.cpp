@@ -51,6 +51,13 @@ inline size_t systemPageSize()
     return getpagesize();
 }
 
+#elif defined(OS_SWITCH)
+
+inline size_t systemPageSize()
+{
+    return 0x1000;
+}
+
 #elif defined(OS_WINDOWS)
 
 inline size_t systemPageSize()

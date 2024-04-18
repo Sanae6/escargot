@@ -23,17 +23,14 @@
 #include <algorithm>
 #include <cassert>
 #include <climits>
-#include <clocale>
 #include <cmath>
 #include <csetjmp>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
-#include <cwchar>
 #include <functional>
 #include <limits>
 #include <list>
-#include <locale>
 #include <map>
 #include <memory>
 #include <set>
@@ -204,6 +201,8 @@
 #define OS_POSIX 1
 #elif defined(_POSIX_VERSION)
 #define OS_POSIX 1
+#elif defined(SWITCH)
+#define OS_SWITCH 1
 #else
 #error "failed to detect target OS"
 #endif
@@ -503,6 +502,9 @@ void customEscargotErrorLogger(const char* format, ...);
     static void operator delete(void*) = delete;  \
     static void operator delete[](void*) = delete;
 
+#if defined(OS_SWITCH)
+#include <alloca.h>
+#endif
 #define ALLOCA(bytes, typenameWithoutPointer) (typenameWithoutPointer*)(LIKELY(bytes < 512) ? alloca(bytes) : GC_MALLOC(bytes))
 
 typedef uint16_t ByteCodeRegisterIndex;

@@ -183,6 +183,8 @@ static int clock_gettime(int, struct timespec* spec) // C-file part
     spec->tv_nsec = wintime % 10000000i64 * 100; // nano-seconds
     return 0;
 }
+#elif defined(OS_SWITCH)
+extern "C" int clock_gettime(clock_t, struct timespec* spec);
 #endif
 
 time64_t DateObject::currentTime()

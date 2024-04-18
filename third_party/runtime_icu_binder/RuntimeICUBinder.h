@@ -21,7 +21,6 @@
 
 #include <string>
 #include <type_traits>
-#include <thread>
 #include <mutex>
 #include <inttypes.h>
 

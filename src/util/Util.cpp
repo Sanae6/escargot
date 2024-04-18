@@ -54,6 +54,9 @@
 #endif
 
 namespace Escargot {
+#if defined(OS_SWITCH)
+extern "C" int clock_gettime(clock_t, struct timespec* spec);
+#endif
 
 uint64_t fastTickCount()
 {
